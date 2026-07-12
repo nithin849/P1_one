@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nithin849.github.io/portfolio_849/sitemap.xml

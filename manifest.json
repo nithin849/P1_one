@@ -1,0 +1,12 @@
+{
+  "name": "Nithin Mangali | Software Developer",
+  "short_name": "N. Mangali",
+  "description": "Portfolio of Nithin Mangali — recent BTech CS graduate and software developer.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#08080c",
+  "theme_color": "#e10600",
+  "icons": [
+    { "src": "assets/favicon.png", "sizes": "192x192", "type": "image/png" }
+  ]
+}
