@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nithin Mangali | Software Developer</title>
+  <meta name="description" content="Nithin Mangali — recent BTech CS graduate and software developer. 350+ LeetCode problems solved, full-stack projects in Java, Python, and ML. Open to opportunities." />
+  <meta name="keywords" content="Nithin Mangali, Software Developer, Java Developer, Python Developer, Full Stack Developer, Fresher, BTech Computer Science" />
+  <meta name="author" content="Nithin Mangali" />
+  <meta name="theme-color" content="#e10600" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Nithin Mangali | Software Developer" />
+  <meta property="og:description" content="Recent BTech CS graduate • 350+ LeetCode problems solved • Full-stack & ML projects. On the grid, ready to race." />
+  <meta property="og:image" content="assets/social-preview.jpg" />
+  <meta property="og:url" content="https://nithin849.github.io/portfolio_849/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Nithin Mangali | Software Developer" />
+  <meta name="twitter:description" content="Recent BTech CS graduate • 350+ LeetCode problems solved • Full-stack & ML projects." />
+  <meta name="twitter:image" content="assets/social-preview.jpg" />
+
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Fonts: Orbitron (display / telemetry digits) + Titillium Web (the real FIA/F1 typeface) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Titillium+Web:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Skip link for keyboard / screen reader users -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- ============ LOADER ============ -->
+  <div id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-brand">N&nbsp;M</div>
+      <div class="dash">
+        <div class="gauge rpm-gauge">
+          <svg viewBox="0 0 200 120" class="gauge-svg">
+            <path class="gauge-track" d="M20,110 A80,80 0 0 1 180,110" />
+            <path class="gauge-fill" id="rpmFill" d="M20,110 A80,80 0 0 1 180,110" />
+          </svg>
+          <span class="gauge-label">RPM x1000</span>
+          <span class="gauge-value" id="rpmValue">0</span>
+        </div>
+        <div class="gauge speed-gauge">
+          <svg viewBox="0 0 200 120" class="gauge-svg">
+            <path class="gauge-track" d="M20,110 A80,80 0 0 1 180,110" />
+            <path class="gauge-fill gauge-fill--blue" id="speedFill" d="M20,110 A80,80 0 0 1 180,110" />
+          </svg>
+          <span class="gauge-label">KM/H</span>
+          <span class="gauge-value" id="speedValue">0</span>
+        </div>
+      </div>
+      <div class="loader-status" id="loaderStatus">SYSTEMS CHECK…</div>
+      <div class="loader-bar"><div class="loader-bar-fill" id="loaderBarFill"></div></div>
+      <div class="smoke" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <!-- ============ CUSTOM CURSOR ============ -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- ============ SCROLL PROGRESS ============ -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ============ TELEMETRY HUD (signature element) ============ -->
+  <aside class="telemetry" id="telemetry" aria-label="Page telemetry, purely decorative">
+    <div class="telemetry-row">
+      <span class="telemetry-key">SECTOR</span>
+      <span class="telemetry-val" id="telemetrySector">01 · GARAGE</span>
+    </div>
+    <div class="telemetry-row">
+      <span class="telemetry-key">LAP TIME</span>
+      <span class="telemetry-val" id="telemetryLap">00:00.0</span>
+    </div>
+    <div class="telemetry-row">
+      <span class="telemetry-key">THROTTLE</span>
+      <span class="telemetry-val" id="telemetryThrottle">0%</span>
+    </div>
+  </aside>
+
+  <!-- ============ ANIMATED BACKGROUND ============ -->
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+  <div class="bg-carbon" aria-hidden="true"></div>
+  <div class="bg-lines" aria-hidden="true"></div>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="navbar" id="navbar">
+    <a href="#home" class="logo" aria-label="Nithin Mangali, back to top">
+      <span class="logo-mark">N<span class="logo-mark-accent">M</span></span>
+      <span class="logo-sub">DRIVER №01</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" class="nav-link active" data-section="home">Home</a>
+      <a href="#about" class="nav-link" data-section="about">About</a>
+      <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+      <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+      <a href="#stats" class="nav-link" data-section="stats">Stats</a>
+      <a href="#certs" class="nav-link" data-section="certs">Certs</a>
+      <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+    </nav>
+
+    <div class="navbar-actions">
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-haspopup="true" aria-expanded="false" aria-controls="themePanel" title="Switch team livery">
+        <span class="swatch" id="themeSwatch"></span> Livery
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="theme-panel" id="themePanel" role="menu" aria-label="Team livery selector">
+      <button class="theme-option" data-theme="ferrari" role="menuitem">🔴 Ferrari</button>
+      <button class="theme-option" data-theme="redbull" role="menuitem">🔵 Red Bull</button>
+      <button class="theme-option" data-theme="mercedes" role="menuitem">⚪ Mercedes AMG</button>
+      <button class="theme-option" data-theme="mclaren" role="menuitem">🟠 McLaren</button>
+      <button class="theme-option" data-theme="lambo" role="menuitem">🟡 Lamborghini</button>
+      <button class="theme-option" data-theme="astonmartin" role="menuitem">🟢 Aston Martin</button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero-track" aria-hidden="true">
+        <div class="track-line"></div>
+        <div class="race-car" id="raceCar">🏎️</div>
+      </div>
+
+      <div class="hero-content">
+        <p class="hero-eyebrow reveal">
+          <span class="pulse-dot"></span> Available for opportunities — on the grid
+        </p>
+
+        <h1 class="hero-name reveal">Nithin Mangali</h1>
+
+        <p class="hero-role reveal">
+          <span id="typedRole"></span><span class="cursor-blink">|</span>
+        </p>
+
+        <p class="hero-tagline reveal">
+          Recent BTech CS graduate who treats every problem like a lap to be optimized —
+          350+ LeetCode problems solved, full-stack builds shipped, and a genuine love for clean code.
+        </p>
+
+        <div class="hero-buttons reveal">
+          <a class="btn btn-primary" href="https://drive.google.com/file/d/1VT-_6rwDHIr5VCg3_72-NNqvP0_vO89J/view?usp=drive_link" target="_blank" rel="noopener">
+            <span>Download Resume</span>
+          </a>
+          <a class="btn btn-outline" href="#contact">
+            <span>Hire Me</span>
+          </a>
+          <a class="btn btn-outline" href="#contact">
+            <span>Contact</span>
+          </a>
+        </div>
+
+        <div class="hero-social reveal">
+          <a href="https://github.com/nithin849" target="_blank" rel="noopener" aria-label="GitHub profile" class="social-chip">GitHub</a>
+          <a href="https://www.linkedin.com/in/nithin-mangali-50ba0924b/" target="_blank" rel="noopener" aria-label="LinkedIn profile" class="social-chip">LinkedIn</a>
+          <a href="https://leetcode.com/u/nithin_849/" target="_blank" rel="noopener" aria-label="LeetCode profile" class="social-chip">LeetCode</a>
+        </div>
+      </div>
+
+      <div class="hero-portrait reveal" aria-hidden="false">
+        <div class="portrait-ring">
+          <div class="portrait-frame">
+            <img src="assets/profile.jpg" alt="Portrait of Nithin Mangali" id="profileImg"
+                 onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'portrait-fallback',textContent:'🏁'}))" />
+          </div>
+        </div>
+        <div class="portrait-plate">P1 · ROOKIE</div>
+      </div>
+
+      <button class="scroll-cue" id="scrollCue" aria-label="Scroll to About section">
+        <span>Start Engine</span>
+        <span class="scroll-cue-arrow">↓</span>
+      </button>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">Garage Briefing</span>
+        <h2 class="section-title">About Me</h2>
+      </div>
+
+      <div class="about-grid">
+        <p class="about-text reveal">
+          I'm a recent <strong>BTech Computer Science graduate</strong> from B V Raju Institute of Technology,
+          actively seeking my first full-time role as a Software Developer. I don't have years on the track yet —
+          I'm a fresher — but I've spent that time building a strong foundation: 350+ problems solved on LeetCode,
+          five real projects shipped across web, Java, and machine learning, and a growing curiosity about DevOps
+          and how software gets built, tested, and shipped at scale. I show up ready to learn fast and contribute
+          from day one.
+        </p>
+
+        <div class="about-cards reveal">
+          <div class="about-card">
+            <span class="about-card-label">Status</span>
+            <span class="about-card-value">Actively Seeking Opportunities</span>
+          </div>
+          <div class="about-card">
+            <span class="about-card-label">Location</span>
+            <span class="about-card-value">Ready to Relocate / Remote</span>
+          </div>
+          <div class="about-card">
+            <span class="about-card-label">Education</span>
+            <span class="about-card-value">BTech, Computer Science</span>
+          </div>
+          <div class="about-card">
+            <span class="about-card-label">Focus</span>
+            <span class="about-card-value">Full-Stack + DevOps (learning)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="counters reveal">
+        <div class="counter">
+          <span class="counter-num" data-target="350" data-suffix="+">0</span>
+          <span class="counter-label">LeetCode Problems</span>
+        </div>
+        <div class="counter">
+          <span class="counter-num" data-target="15" data-suffix="+">0</span>
+          <span class="counter-label">GitHub Repositories</span>
+        </div>
+        <div class="counter">
+          <span class="counter-num" data-target="6" data-suffix="+">0</span>
+          <span class="counter-label">Projects Completed</span>
+        </div>
+        <div class="counter">
+          <span class="counter-num" data-target="3" data-suffix="+">0</span>
+          <span class="counter-label">Certifications</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section" id="skills">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">Car Setup</span>
+        <h2 class="section-title">Skills</h2>
+      </div>
+
+      <div class="skill-filters reveal" id="skillFilters">
+        <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="lang">Languages</button>
+        <button class="filter-chip" data-filter="web">Web</button>
+        <button class="filter-chip" data-filter="data">Database</button>
+        <button class="filter-chip" data-filter="ops">DevOps</button>
+      </div>
+
+      <div class="skills-grid" id="skillsGrid">
+        <!-- populated by script.js -->
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section" id="projects">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">Race Log</span>
+        <h2 class="section-title">Projects</h2>
+      </div>
+
+      <div class="project-controls reveal">
+        <input type="search" id="projectSearch" class="project-search" placeholder="Search projects…" aria-label="Search projects" />
+        <div class="project-filters" id="projectFilters">
+          <button class="filter-chip active" data-filter="all">All</button>
+          <button class="filter-chip" data-filter="ML Project">ML</button>
+          <button class="filter-chip" data-filter="NLP Project">NLP</button>
+          <button class="filter-chip" data-filter="Java Project">Java</button>
+          <button class="filter-chip" data-filter="Beginner Project">Beginner</button>
+        </div>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+        <!-- populated by script.js -->
+      </div>
+    </section>
+
+    <!-- ============ STATS / ACHIEVEMENTS ============ -->
+    <section class="section" id="stats">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">Timing Screens</span>
+        <h2 class="section-title">Coding Stats &amp; Achievements</h2>
+      </div>
+
+      <div class="stats-grid reveal">
+        <div class="stat-card">
+          <span class="stat-num">1445</span>
+          <span class="stat-label">LeetCode Contest Rating</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">60%</span>
+          <span class="stat-label">Acceptance Rate</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">7+</span>
+          <span class="stat-label">LeetCode Badges</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">60+</span>
+          <span class="stat-label">Contests Attended</span>
+        </div>
+      </div>
+
+      <div class="leetcode-split reveal">
+        <div class="split-bar">
+          <div class="split-seg split-easy" style="--w:234"><span>Easy · 234+</span></div>
+          <div class="split-seg split-medium" style="--w:117"><span>Medium · 117+</span></div>
+          <div class="split-seg split-hard" style="--w:4"><span>Hard · 4+</span></div>
+        </div>
+      </div>
+
+      <div class="trophy-shelf reveal">
+        <a class="trophy" href="https://github.com/nithin849" target="_blank" rel="noopener">
+          <span class="trophy-icon">🐙</span>
+          <span class="trophy-title">GitHub</span>
+          <span class="trophy-sub">15+ repositories</span>
+        </a>
+        <a class="trophy" href="https://leetcode.com/u/nithin_849/" target="_blank" rel="noopener">
+          <span class="trophy-icon">🏆</span>
+          <span class="trophy-title">LeetCode</span>
+          <span class="trophy-sub">350+ problems solved</span>
+        </a>
+        <a class="trophy" href="https://www.linkedin.com/in/nithin-mangali-50ba0924b/" target="_blank" rel="noopener">
+          <span class="trophy-icon">🤝</span>
+          <span class="trophy-title">LinkedIn</span>
+          <span class="trophy-sub">Let's connect</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ CERTIFICATES ============ -->
+    <section class="section" id="certs">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">Podium Credentials</span>
+        <h2 class="section-title">Certifications</h2>
+      </div>
+
+      <div class="cert-carousel reveal" id="certCarousel">
+        <button class="cert-nav cert-prev" id="certPrev" aria-label="Previous certificate">‹</button>
+        <div class="cert-track" id="certTrack">
+          <div class="cert-card">
+            <span class="cert-badge">2023</span>
+            <h3>Java Programming</h3>
+            <p>Oracle University</p>
+          </div>
+          <div class="cert-card">
+            <span class="cert-badge">2023</span>
+            <h3>Web Development Bootcamp</h3>
+            <p>Udemy</p>
+          </div>
+          <div class="cert-card">
+            <span class="cert-badge">2022</span>
+            <h3>Python for Data Science</h3>
+            <p>Coursera</p>
+          </div>
+        </div>
+        <button class="cert-nav cert-next" id="certNext" aria-label="Next certificate">›</button>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section" id="contact">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">Pit Lane</span>
+        <h2 class="section-title">Get In Touch</h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <a class="contact-chip" href="mailto:mnithinmangali@gmail.com">
+            <span class="contact-chip-label">Email</span>
+            <span class="contact-chip-value">mnithinmangali@gmail.com</span>
+          </a>
+          <a class="contact-chip" href="https://www.linkedin.com/in/nithin-mangali-50ba0924b/" target="_blank" rel="noopener">
+            <span class="contact-chip-label">LinkedIn</span>
+            <span class="contact-chip-value">Connect with me</span>
+          </a>
+          <a class="contact-chip" href="https://github.com/nithin849" target="_blank" rel="noopener">
+            <span class="contact-chip-label">GitHub</span>
+            <span class="contact-chip-value">15+ repositories</span>
+          </a>
+          <a class="contact-chip" href="https://leetcode.com/u/nithin_849/" target="_blank" rel="noopener">
+            <span class="contact-chip-label">LeetCode</span>
+            <span class="contact-chip-value">350+ problems solved</span>
+          </a>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm" novalidate>
+          <div class="form-row">
+            <label for="fName">Your Name</label>
+            <input type="text" id="fName" name="name" required />
+            <span class="field-error" id="errName"></span>
+          </div>
+          <div class="form-row">
+            <label for="fEmail">Email Address</label>
+            <input type="email" id="fEmail" name="email" required />
+            <span class="field-error" id="errEmail"></span>
+          </div>
+          <div class="form-row">
+            <label for="fSubject">Subject</label>
+            <input type="text" id="fSubject" name="subject" required />
+            <span class="field-error" id="errSubject"></span>
+          </div>
+          <div class="form-row">
+            <label for="fMessage">Message</label>
+            <textarea id="fMessage" name="message" rows="4" required></textarea>
+            <span class="field-error" id="errMessage"></span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-send" id="sendBtn">
+            <span class="btn-send-text">Send Message</span>
+            <span class="btn-send-icon">🏁</span>
+          </button>
+          <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer-top">
+      <span class="footer-name">Nithin Mangali</span>
+      <span class="footer-tag">Fresher • Software Developer • Problem Solver</span>
+    </div>
+    <nav class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="footer-social">
+      <a href="https://github.com/nithin849" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/nithin-mangali-50ba0924b/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://leetcode.com/u/nithin_849/" target="_blank" rel="noopener">LeetCode</a>
+    </div>
+    <p class="footer-copy">© <span id="year"></span> Nithin Mangali. All rights reserved.</p>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">🚀</button>
+
+  <!-- Confetti canvas for the Konami easter egg -->
+  <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
